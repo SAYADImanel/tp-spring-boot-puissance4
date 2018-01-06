@@ -43,5 +43,15 @@ public class GameModel {
              public void settableau(Jeton[][] tableau) {
                this.tableau = tableau;
     }
+        public void add(Integer index) {
+
+                for (int h = tableau.length - 1; h >= 0; h--) {
+                 if (tableau[h][index] == Jeton.VIDE) {
+                tableau[h][index] = Jeton.ROUGE;
+                 return;
+                      }
+             }
+              throw new IllegalArgumentException("Aucune place disponible pour un jeton " + index);
+         }
 
 }

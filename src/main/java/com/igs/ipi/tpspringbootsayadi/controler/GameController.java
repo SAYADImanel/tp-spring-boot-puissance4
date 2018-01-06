@@ -7,6 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.igs.ipi.tpspringbootsayadi.service.GameService;
 import com.igs.ipi.tpspringbootsayadi.model.GameModel;
 import com.igs.ipi.tpspringbootsayadi.service.PartieEnCours;
+import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class GameController {
 
@@ -35,8 +36,20 @@ public class GameController {
         GameModel gameModel = partieEnCours.getGameModel();
         mv.addObject("game", gameModel);
         return mv;
+
+    }
+
+    @RequestMapping("/game/drop/{i}")
+    public ModelAndView drop(@PathVariable("i") Integer numColonne) {
+        ModelAndView mv = new ModelAndView("game");
+        GameModel gameModel = partieEnCours.getGameModel();
+        int index = numColonne - 1;
+        gameModel.add(index);
+        mv.addObject("game", gameModel);
+        return mv;
     }
 }
+
 
 
 
